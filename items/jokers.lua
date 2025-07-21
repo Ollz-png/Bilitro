@@ -53,7 +53,11 @@ SMODS.Atlas{
 SMODS.Joker{
     key = 'J',
 
+<<<<<<< HEAD
     -- How rare this joker is (1 = common, 4 = legendary)
+=======
+    -- How rare this joker is (0 = common, 4 = legendary)
+>>>>>>> 2ac0a5b547d6fc1b5e9d59b80781db0f397b3f28
     rarity = 1,
 
     -- How much this joker costs to buy in the shop
@@ -136,7 +140,11 @@ SMODS.Joker{
             '"Sources the power of playing cards."',
             "When {C:attention}Playing Card{} scored,",
             "Gains {X:mult,C:white}+0.25{} Mult.",
+<<<<<<< HEAD
             "{C:inactive}(Currently {X:mult,C:white}+#1#{} {C:inactive}Mult){}"
+=======
+            "{C:inactive}(Currently {X:mult,C:white}+#1#{} Mult){}"
+>>>>>>> 2ac0a5b547d6fc1b5e9d59b80781db0f397b3f28
         }
     },
     atlas = "EnergyBall",
