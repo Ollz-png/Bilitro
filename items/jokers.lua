@@ -136,7 +136,7 @@ SMODS.Joker{
             '"Sources the power of playing cards."',
             "When {C:attention}Playing Card{} scored,",
             "Gains {X:mult,C:white}+0.25{} Mult.",
-            "{C:inactive}(Currently {X:mult,C:white}+#1#{} {C:inactive}Mulmmmmmmt){}"
+            "{C:inactive}(Currently {X:mult,C:white}+#1#{} {C:inactive}Mult){}"
         }
     },
     atlas = "EnergyBall",
