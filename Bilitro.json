@@ -1,0 +1,14 @@
+{
+	"id": "bill",
+	"name": "Bilitro",
+	"display_name": "Bilitro",
+	"author": ["MBOllz"],
+	"description": "No idea what to put here lmao",
+	"prefix": "bill",
+	"main_file": "main.lua",
+	"priority": 0,
+	"badge_colour": "FF0000",
+	"badge_text_colour": "FFFFFFFF",
+	"version": "0",
+	"dependencies": ["Steamodded (>=1.*)"]
+}
