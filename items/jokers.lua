@@ -52,8 +52,6 @@ SMODS.Atlas{
 -- Define a new Joker card with the key 'J'
 SMODS.Joker{
     key = 'J',
-
-    -- How rare this joker is (1 = common, 4 = legendary)
     rarity = 1,
 
     -- How much this joker costs to buy in the shop
