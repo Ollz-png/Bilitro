@@ -170,3 +170,97 @@ SMODS.Joker{
         end
     end
 }
+
+-- Joker: Fuck you in particular
+
+-- Define the image atlas for the Joker
+SMODS.Atlas{
+    key = 'fyip',           -- Unique key name for this atlas
+    path = 'fyip.png',      -- Path to the image file
+    px = 71,                -- Width of one card in the atlas
+    py = 95                 -- Height of one card in the atlas
+}
+
+SMODS.Atlas{
+    key = 'fyip',
+    path = 'fyip.png',
+    px = 71,
+    py = 95
+}
+
+SMODS.Joker{
+    key = 'fyip',
+    name = 'Fuck you in particular',
+    rarity = 2,
+    pos = {x = 0, y = 0},
+    cost = 6,
+    config = {
+        extra = {
+            uses = 5,
+            used_this_round = false
+        }
+    },
+    loc_txt = {
+        name = 'Fuck you in particular',
+        text = {
+            "When first hand of blind is played,",
+            "set score to {C:attention}50%{} of required score.",
+            "{C:red,E:2}Self destructs{} after {C:attention}5{} uses.",
+            "{C:inactive}(#2# uses remaining)"
+        }
+    },
+    loc_vars = function(self, info_queue, center)
+        return {vars = {center.ability.extra.uses, center.ability.extra.uses}}
+    end,
+    atlas = 'fyip',
+
+    calculate = function(self, card, context)
+        -- final hook: after every scoring step and all jokers
+        
+        if context.setting_blind then
+            card.ability.extra.used_this_round = false
+        end
+        
+        if context.joker_mainm
+           and G.GAME.current_round.hands_played == 0
+           and not card.ability.extra.used_this_round then
+
+            local required = G.GAME.blind.chips
+            local current = G.GAME.chips
+            local target = required * 0.5
+
+            if current < target then
+                G.GAME.chips = target
+                card.ability.extra.used_this_round = true
+                card.ability.extra.uses = card.ability.extra.uses - 1
+
+                if card.ability.extra.uses <= 0 then
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            play_sound('tarot1')
+                            card.T.r = -0.2
+                            card:juice_up(0.3, 0.4)
+                            card.states.drag.is = false
+                            card.children.center.pinch.x = true
+                            G.E_MANAGER:add_event(Event({
+                                trigger = 'after', delay = 0.3, blockable = false,
+                                func = function()
+                                    G.jokers:remove_card(card)
+                                    card:remove()
+                                    card = nil
+                                    return true
+                                end
+                            }))
+                            return true
+                        end
+                    }))
+                end
+
+                return {
+                    message = "FUCK YOU",
+                    colour = G.C.CHIPS
+                }
+            end
+        end
+    end,
+}
